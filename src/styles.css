@@ -1,0 +1,125 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-glow: var(--primary-glow);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-navy: var(--navy);
+  --color-navy-foreground: var(--navy-foreground);
+  --color-gold: var(--gold);
+  --color-gold-foreground: var(--gold-foreground);
+  --color-success: var(--success);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(0.99 0.005 80);
+  --foreground: oklch(0.2 0.02 260);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.2 0.02 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2 0.02 260);
+
+  /* Brand orange */
+  --primary: oklch(0.66 0.21 38);
+  --primary-foreground: oklch(1 0 0);
+  --primary-glow: oklch(0.72 0.19 48);
+
+  --secondary: oklch(0.96 0.01 80);
+  --secondary-foreground: oklch(0.2 0.02 260);
+  --muted: oklch(0.96 0.01 80);
+  --muted-foreground: oklch(0.5 0.02 260);
+  --accent: oklch(0.95 0.05 60);
+  --accent-foreground: oklch(0.35 0.15 38);
+
+  --destructive: oklch(0.6 0.24 27);
+  --destructive-foreground: oklch(1 0 0);
+
+  --border: oklch(0.92 0.01 80);
+  --input: oklch(0.92 0.01 80);
+  --ring: oklch(0.66 0.21 38);
+
+  /* Custom palette */
+  --navy: oklch(0.22 0.04 260);
+  --navy-foreground: oklch(0.98 0.005 80);
+  --gold: oklch(0.82 0.17 85);
+  --gold-foreground: oklch(0.25 0.05 60);
+  --success: oklch(0.65 0.18 150);
+
+  --gradient-primary: linear-gradient(135deg, oklch(0.66 0.21 38), oklch(0.72 0.19 48));
+  --gradient-gold: linear-gradient(135deg, oklch(0.82 0.17 85), oklch(0.75 0.18 70));
+  --gradient-navy: linear-gradient(160deg, oklch(0.22 0.04 260), oklch(0.16 0.03 260));
+  --shadow-elegant: 0 10px 30px -10px color-mix(in oklab, var(--primary) 30%, transparent);
+  --shadow-card: 0 4px 20px -8px oklch(0.2 0.02 260 / 0.15);
+}
+
+.dark {
+  --background: oklch(0.15 0.02 260);
+  --foreground: oklch(0.98 0.005 80);
+  --card: oklch(0.2 0.025 260);
+  --card-foreground: oklch(0.98 0.005 80);
+  --popover: oklch(0.2 0.025 260);
+  --popover-foreground: oklch(0.98 0.005 80);
+  --primary: oklch(0.7 0.2 42);
+  --primary-foreground: oklch(0.15 0.02 260);
+  --secondary: oklch(0.25 0.03 260);
+  --secondary-foreground: oklch(0.98 0.005 80);
+  --muted: oklch(0.25 0.03 260);
+  --muted-foreground: oklch(0.7 0.02 260);
+  --accent: oklch(0.3 0.05 40);
+  --accent-foreground: oklch(0.98 0.005 80);
+  --border: oklch(1 0 0 / 0.1);
+  --input: oklch(1 0 0 / 0.15);
+  --ring: oklch(0.7 0.2 42);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: 'Manjari', 'Noto Sans Malayalam', 'Inter', system-ui, sans-serif;
+  }
+  h1, h2, h3, h4 { font-family: 'Manjari', 'Noto Sans Malayalam', 'Plus Jakarta Sans', 'Inter', sans-serif; letter-spacing: -0.01em; }
+  :lang(en) body, :lang(en) h1, :lang(en) h2, :lang(en) h3, :lang(en) h4 {
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .text-xs {
+    font-size: 0.8125rem;
+    line-height: 1.125rem;
+  }
+  .bg-gradient-primary { background-image: var(--gradient-primary); }
+  .bg-gradient-gold { background-image: var(--gradient-gold); }
+  .bg-gradient-navy { background-image: var(--gradient-navy); }
+  .shadow-elegant { box-shadow: var(--shadow-elegant); }
+  .shadow-card { box-shadow: var(--shadow-card); }
+}
