@@ -10,6 +10,7 @@ import {
 import { fetchEventPostDetails, type EventPostDetails } from "@/lib/event-api";
 
 export const Route = createFileRoute("/events/$eventId")({
+  ssr: false,
   head: () => ({
     meta: [{ title: "Event Details - Mukundhapuram Society Limited" }],
   }),

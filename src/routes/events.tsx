@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { fetchEventPosts, type EventPostListItem } from "@/lib/event-api";
 
 export const Route = createFileRoute("/events")({
+  ssr: false,
   head: () => ({
     meta: [
       { title: "Events - Mukundhapuram Society Limited" },
