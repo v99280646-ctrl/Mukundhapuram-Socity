@@ -1,1 +1,0 @@
-var e=`/assets/hero-finance-DFWZhTI5.jpg`,t=`/assets/gold-loan-C5LNgQGI.jpg`;export{e as n,t};

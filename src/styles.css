@@ -46,34 +46,34 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.2 0.02 260);
 
-  /* Brand orange */
-  --primary: oklch(0.66 0.21 38);
+  /* Brand blue */
+  --primary: #044290;
   --primary-foreground: oklch(1 0 0);
-  --primary-glow: oklch(0.72 0.19 48);
+  --primary-glow: #0d5dc2;
 
   --secondary: oklch(0.96 0.01 80);
   --secondary-foreground: oklch(0.2 0.02 260);
   --muted: oklch(0.96 0.01 80);
   --muted-foreground: oklch(0.5 0.02 260);
-  --accent: oklch(0.95 0.05 60);
-  --accent-foreground: oklch(0.35 0.15 38);
+  --accent: #ff7d00;
+  --accent-foreground: oklch(1 0 0);
 
   --destructive: oklch(0.6 0.24 27);
   --destructive-foreground: oklch(1 0 0);
 
   --border: oklch(0.92 0.01 80);
   --input: oklch(0.92 0.01 80);
-  --ring: oklch(0.66 0.21 38);
+  --ring: #044290;
 
   /* Custom palette */
   --navy: oklch(0.22 0.04 260);
   --navy-foreground: oklch(0.98 0.005 80);
-  --gold: oklch(0.82 0.17 85);
-  --gold-foreground: oklch(0.25 0.05 60);
+  --gold: #ff7d00;
+  --gold-foreground: oklch(1 0 0);
   --success: oklch(0.65 0.18 150);
 
-  --gradient-primary: linear-gradient(135deg, oklch(0.66 0.21 38), oklch(0.72 0.19 48));
-  --gradient-gold: linear-gradient(135deg, oklch(0.82 0.17 85), oklch(0.75 0.18 70));
+  --gradient-primary: linear-gradient(135deg, #044290, #0d5dc2);
+  --gradient-gold: linear-gradient(135deg, #ff7d00, #ff9a3d);
   --gradient-navy: linear-gradient(160deg, oklch(0.22 0.04 260), oklch(0.16 0.03 260));
   --shadow-elegant: 0 10px 30px -10px color-mix(in oklab, var(--primary) 30%, transparent);
   --shadow-card: 0 4px 20px -8px oklch(0.2 0.02 260 / 0.15);
@@ -86,17 +86,17 @@
   --card-foreground: oklch(0.98 0.005 80);
   --popover: oklch(0.2 0.025 260);
   --popover-foreground: oklch(0.98 0.005 80);
-  --primary: oklch(0.7 0.2 42);
+  --primary: #044290;
   --primary-foreground: oklch(0.15 0.02 260);
   --secondary: oklch(0.25 0.03 260);
   --secondary-foreground: oklch(0.98 0.005 80);
   --muted: oklch(0.25 0.03 260);
   --muted-foreground: oklch(0.7 0.02 260);
-  --accent: oklch(0.3 0.05 40);
-  --accent-foreground: oklch(0.98 0.005 80);
+  --accent: #ff7d00;
+  --accent-foreground: oklch(1 0 0);
   --border: oklch(1 0 0 / 0.1);
   --input: oklch(1 0 0 / 0.15);
-  --ring: oklch(0.7 0.2 42);
+  --ring: #044290;
 }
 
 @layer base {

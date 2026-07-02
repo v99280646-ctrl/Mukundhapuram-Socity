@@ -68,6 +68,9 @@ function ProductsPage() {
                 t(`products.${item.key}.p2`),
                 t(`products.${item.key}.p3`),
                 t(`products.${item.key}.p4`),
+                t(`products.${item.key}.p5`),
+                t(`products.${item.key}.p6`),
+                t(`products.${item.key}.p7`),
               ];
               return (
                 <div
@@ -121,13 +124,16 @@ function ProductsPage() {
                               </table>
                             </div>
                           </div>
-                          <ul className="grid gap-3 sm:grid-cols-2">
-                            {points.map((point) => (
-                              <li key={point} className="rounded-lg border border-border bg-background px-4 py-3 text-sm text-foreground/85">
-                                {point}
-                              </li>
-                            ))}
-                          </ul>
+                          <div>
+                            <h4 className="text-sm font-semibold uppercase tracking-[0.14em] text-muted-foreground">Key Features</h4>
+                            <ul className="mt-3 grid gap-3 sm:grid-cols-2">
+                              {points.map((point) => (
+                                <li key={point} className="rounded-lg border border-border bg-background px-4 py-3 text-sm text-foreground/85">
+                                  {point}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
                         </div>
                       ) : (
                         <ul className="grid gap-3 sm:grid-cols-2">

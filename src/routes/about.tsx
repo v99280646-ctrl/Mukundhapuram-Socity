@@ -2,95 +2,86 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Shield, Users, TrendingUp, Award, Eye, Target } from "lucide-react";
 import { useT } from "@/lib/i18n";
 
-const datePattern = /(?:\b\d{1,2}\.\d{1,2}\.\s*\d{2,4}\b|\b\d{1,2}\s*(?:ജനുവരി|ഫെബ്രുവരി|മാര്‍ച്ച്|മാർച്ച്|ഏപ്രില്‍|ഏപ്രിൽ|മേയ്|ജൂണ്‍|ജൂണ്‍|ജൂലൈ|ആഗസ്റ്റ്|സെപ്റ്റംബര്‍|സെപ്റ്റംബർ|ഒക്ടോബര്‍|ഒക്ടോബർ|നവംബര്‍|നവംബർ|ഡിസംബര്‍|ഡിസംബർ)\s*\d{4}\b|\b\d{4}\b)/g;
-
-function emphasizeDates(text: string) {
-  const parts = text.split(datePattern);
-  const matches = text.match(datePattern) ?? [];
-  return parts.flatMap((part, index) => {
-    const out: React.ReactNode[] = [];
-    if (part) out.push(part);
-    const match = matches[index];
-    if (match) out.push(<strong key={`${match}-${index}`} className="font-semibold text-foreground">{match}</strong>);
-    return out;
-  });
-}
-
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "ഞങ്ങളെക്കുറിച്ച് — മുകുന്ദപുരം സൊസൈറ്റി ലിമിറ്റഡ്" },
-      { name: "description", content: "മുകുന്ദപുരം സൊസൈറ്റി ലിമിറ്റഡിന്റെ കഥ, കാഴ്ചപ്പാട്, ദൗത്യം, പ്രതിബദ്ധത." },
+      { title: "About - Mukundhapuram Socity Limited" },
+      { name: "description", content: "About Mukundapuram Taluk Grama Vikasana Sahakarana Sangham, its mission, vision, and history." },
     ],
   }),
   component: AboutPage,
 });
 
 function AboutPage() {
-  const { t } = useT();
+  const { t, lang } = useT();
   const values = [
     { icon: Shield, title: t("about.values.v1.t"), desc: t("about.values.v1.d") },
     { icon: Users, title: t("about.values.v2.t"), desc: t("about.values.v2.d") },
     { icon: TrendingUp, title: t("about.values.v3.t"), desc: t("about.values.v3.d") },
     { icon: Award, title: t("about.values.v4.t"), desc: t("about.values.v4.d") },
   ];
-  const history = [
-    t("about.history.p1"),
-    t("about.history.p2"),
-    t("about.history.p3"),
-    t("about.history.p4"),
-    t("about.history.p5"),
-    t("about.history.p6"),
-    t("about.history.p7"),
-    t("about.history.p8"),
-    t("about.history.p9"),
-    t("about.history.p10"),
-    t("about.history.p11"),
-  ];
-  const promoters = [
-    "അഡ്വ ഡി ശങ്കരന്‍കുട്ടി",
-    "എംപി അജിത് കുമാര്‍",
-    "ശശിചക്രമത്ത്",
-    "കെ ശേഖരന്‍",
-    "ആര്‍ ബാലകൃഷ്ണന്‍",
-    "എം.സുരേഷ്",
-  ];
-  const stats = [
-    { v: "10K+", l: t("about.stats.1") },
-    { v: "₹50Cr+", l: t("about.stats.2") },
-    { v: "98%", l: t("about.stats.3") },
-    { v: "3+", l: t("about.stats.4") },
-  ];
+
+  const english = lang === "en";
+
+  const historyItems = english
+    ? [
+        "The group registered on May 6, 2014 at the NSS Karayoga Union Building, Irinjalakuda Mukundapuram Taluk, covering the revenue taluks of Mukundapuram and Chalakudy, and started its activities on August 8, 2014.",
+        "On September 1, 2013, Mr. Kallur Babu was elected as the Chief Promoter and Adv. D. Sankarankutty, M. P. Ajith Kumar, R. Balakrishnan, Sasi Chakramat, M. Suresh and K. Sekharan were elected as the Promoters.",
+        "The 100 shares were accepted at the preliminary general meeting of Mukundapuram Taluk Village Development Society held on 08.07. 2014.",
+        "Kallur Babu M.G.M.P. Ajith Kumar, Sasi Chamkramat, R. Balakrishnan, M. Suresh, Sini Suresh, Shailaja Radhakrishnan, Bindu Prakash, and Seena.N. K. formed a temporary administrative committee for a period of three months as members.",
+        "In the elections held on 08.12. 2014, the new Administrative Committee was constituted with Shri Sasi Chakramat as President, Soumya Menon as Vice President, Sridevi Nandakumar as Honorary Secretary, Ajithkumar M.P, A Unnikrishnan, Adv. D. Sankarankutty, K Shekharan, M Suresh, K B Sreedharan, Mini T K and Sumathi K K as Directors.",
+        "Following the resignation of 7 members from the current Administrative Committee, Shri Kalloor Babu was elected as the Convener and Shri K Shekharan and Sridevi Nandakumar as members.",
+        "The term of the Administrative Committee was extended for three months after its term expired on 05.08.2016.",
+        "On 08.01.2017, Mr. C. Chandrasekhara Menon was elected as the President and Mr. K. Manoj as the Vice President of the new Administrative Committee. Praveen Kumar, M. P. Ajith Kumar, Kallur Babu, M. Suresh and Sreedevi Nandakumar were also elected as Directors.",
+        "Following the death of the President of the Sangh, Shri Chandrashekhara Menon, on 19.12.2018, Shri K. Manoj, who was the Vice President, was elected as the President and Shri Devi Nandakumar as the Vice President.",
+        "Following the resignation of Shri Kallur Babu and Shri M. P. Ajith Kumar, on 23.11.2019, Shri Ramachandran Payyakal and Shri K. Dinesh Kumar K. B. Sreedharan were elected as the Directors.",
+        "In the current Governing Body that came into existence on 06.01.2022, Shri K. Manoj was elected as the President and Shri K. Dinesh Kumar as the Vice President. K. Sekharan, Ramachandran Payyakal Kannan VS, Mani Menon, Raji Suresh, Jayalakshmi T. G, Shobha P. Menon and K. Raveendran were also elected as Directors.",
+      ]
+    : [
+        t("about.history.p1"),
+        t("about.history.p2"),
+        t("about.history.p3"),
+        t("about.history.p4"),
+        t("about.history.p5"),
+        t("about.history.p6"),
+        t("about.history.p7"),
+        t("about.history.p8"),
+        t("about.history.p9"),
+        t("about.history.p10"),
+        t("about.history.p11"),
+      ];
 
   return (
     <>
       <section className="bg-gradient-primary text-primary-foreground py-20">
         <div className="mx-auto max-w-4xl px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-extrabold">{t("about.hero.title")}</h1>
-          <p className="mt-4 text-lg opacity-90">{t("about.hero.desc")}</p>
+          {english ? (
+            <h1 className="text-4xl md:text-5xl font-extrabold">About us</h1>
+          ) : (
+            <h1 className="text-4xl md:text-5xl font-extrabold">ഞങ്ങളെക്കുറിച്ച്</h1>
+          )}
         </div>
       </section>
 
       <section className="py-20 bg-background">
         <div className="mx-auto max-w-7xl px-4 grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl font-bold">{t("about.story.title")}</h2>
-            <p className="mt-4 text-muted-foreground">{emphasizeDates(t("about.story.p1"))}</p>
-            <p className="mt-3 text-muted-foreground">{emphasizeDates(t("about.story.p2"))}</p>
-            <p className="mt-3 text-muted-foreground">{emphasizeDates(t("about.story.p3"))}</p>
-          </div>
-          <div className="relative">
-            <div className="absolute -inset-3 bg-gradient-primary opacity-20 blur-2xl rounded-3xl" />
-            <div className="relative rounded-2xl bg-gradient-navy text-navy-foreground p-10 shadow-card">
-              <div className="grid grid-cols-2 gap-6">
-                {stats.map((s) => (
-                  <div key={s.l}>
-                    <div className="text-3xl font-bold text-gold">{s.v}</div>
-                    <div className="text-sm opacity-80 mt-1">{s.l}</div>
-                  </div>
-                ))}
+            {english ? (
+              <div className="mt-4 space-y-3 text-muted-foreground leading-8">
+                <p>Mukundapuram Taluk Grama Vikasana Sahakarana Sangham (Registration No. R 1427), which was registered on May 6, 2014 at the NSS Karayogam Union Building, Irinjalakuda Taluk, with the revenue taluks of Mukundapuram and Chalakudy as its operational area, started its operations on July 8, 2014.</p>
+                <p>Currently, it is functioning well with 2661 members. All the modern facilities available are being implemented in our group to provide the best facilities to the members. As it is a member of the Kerala State Cooperative Deposit Guarantee Fund Board, complete protection is available for the investments.</p>
+                <p>The group offers short-term and long-term loans, home appliances - vehicle - business loans, monthly savings plans, and investment plans that provide high interest to investors as per the cooperative rules. The group's board of directors and employees are constantly striving to expand their operations to more areas.</p>
               </div>
-            </div>
+            ) : (
+              <>
+                <p className="mt-4 text-muted-foreground">{t("about.story.p1")}</p>
+                <p className="mt-3 text-muted-foreground">{t("about.story.p2")}</p>
+                <p className="mt-3 text-muted-foreground">{t("about.story.p3")}</p>
+              </>
+            )}
+          </div>
+          <div className="relative overflow-hidden rounded-2xl border border-border bg-card shadow-card">
+            <img src="/aboutgg.jpg" alt={english ? "About us" : t("about.hero.title")} className="h-full w-full object-cover" />
           </div>
         </div>
       </section>
@@ -98,11 +89,23 @@ function AboutPage() {
       <section className="py-20 bg-muted">
         <div className="mx-auto max-w-7xl px-4 grid md:grid-cols-2 gap-6">
           {[
-            { icon: Eye, title: t("about.vision.t"), desc: t("about.vision.d") },
-            { icon: Target, title: t("about.mission.t"), desc: t("about.mission.d") },
+            {
+              icon: Eye,
+              title: english ? "Our vision" : t("about.vision.t"),
+              desc: english
+                ? "To grow into an exemplary and popular cooperative institution with social commitment that creates opportunities and enhances the financial independence and quality of life of each member by utilizing the wealth of its members safely and effectively, based on honesty, trustworthiness, responsibility, and privacy, upholding the great values of the cooperative principle."
+                : t("about.vision.d"),
+            },
+            {
+              icon: Target,
+              title: english ? "our mission" : t("about.mission.t"),
+              desc: english
+                ? "To provide excellent services based on the values of trust, honesty, privacy, and responsibility, with the aim of ensuring the financial security and prosperity of its members. To safeguard the investments of its members and support their personal and collective growth through loan and savings plans tailored to their financial needs."
+                : t("about.mission.d"),
+            },
           ].map((v) => (
             <div key={v.title} className="rounded-2xl bg-card border border-border p-8 shadow-card">
-              <div className="h-12 w-12 rounded-lg bg-gradient-primary grid place-items-center text-primary-foreground shadow-elegant">
+              <div className="h-12 w-12 rounded-lg bg-gradient-primary grid place-items-center text-gold-foreground shadow-elegant">
                 <v.icon size={22} />
               </div>
               <h3 className="mt-5 text-xl font-bold">{v.title}</h3>
@@ -115,11 +118,11 @@ function AboutPage() {
       <section className="py-20 bg-background">
         <div className="mx-auto max-w-7xl px-4">
           <div className="max-w-6xl">
-            <h2 className="text-3xl md:text-4xl font-bold">{t("about.history.title")}</h2>
-            <div className="mt-6 grid gap-5 md:grid-cols-2 text-muted-foreground leading-8">
-              {history.map((item) => (
-                <p key={item} className="rounded-xl border border-border bg-card p-5 shadow-card">
-                  {emphasizeDates(item)}
+            <h2 className="text-3xl md:text-4xl font-bold">{english ? "History" : t("about.history.title")}</h2>
+            <div className="mt-6 space-y-5 text-muted-foreground leading-8">
+              {historyItems.map((item) => (
+                <p key={item} className={english ? "" : "rounded-xl border border-border bg-card p-5 shadow-card"}>
+                  {item}
                 </p>
               ))}
             </div>
@@ -127,124 +130,27 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-muted">
-        <div className="mx-auto max-w-7xl px-4">
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">നേതൃത്വം</p>
-            <h2 className="mt-2 text-3xl md:text-4xl font-bold">മുന്‍ പ്രസിഡണ്ടുമാരും വൈസ്പ്രസിഡണ്ടുമാരും</h2>
-            <p className="mt-3 text-muted-foreground">സംഘത്തിന്റെ മുന്‍കാല നേതൃത്വത്തെ സുതാര്യമായ രീതിയില്‍ അവതരിപ്പിക്കുന്ന വിഭാഗം.</p>
-          </div>
-          <div className="mt-10 grid gap-6 lg:grid-cols-2">
-            <div className="rounded-2xl border border-border bg-card p-6 shadow-card">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">മുന്‍ പ്രസിഡണ്ടുമാര്‍</p>
-              <div className="mt-5 space-y-3">
-                {[
-                  "ശശിചക്രമത്ത്",
-                  "സി ചന്ദ്രശേഖരമേനോന്‍",
-                ].map((name, index) => (
-                  <div key={name} className="flex items-center justify-between rounded-lg border border-border bg-background px-4 py-3">
-                    <span className="font-semibold text-foreground">{name}</span>
-                    <span className="text-xs font-semibold text-muted-foreground">0{index + 1}</span>
-                  </div>
-                ))}
-              </div>
+      {!english ? (
+        <section className="py-20 bg-background">
+          <div className="mx-auto max-w-7xl px-4">
+            <div className="text-center max-w-2xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold">{t("about.values.title")}</h2>
+              <p className="mt-2 text-muted-foreground">{t("about.values.desc")}</p>
             </div>
-            <div className="rounded-2xl border border-border bg-card p-6 shadow-card">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">മുന്‍ വൈസ്പ്രസിഡണ്ടുമാര്‍</p>
-              <div className="mt-5 space-y-3">
-                {[
-                  "സൗമ്യ മേനോന്‍",
-                  "കെ. മനോജ്",
-                  "ശ്രീദേവി നന്ദകുമാര്‍",
-                ].map((name, index) => (
-                  <div key={name} className="flex items-center justify-between rounded-lg border border-border bg-background px-4 py-3">
-                    <span className="font-semibold text-foreground">{name}</span>
-                    <span className="text-xs font-semibold text-muted-foreground">0{index + 1}</span>
+            <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {values.map((v) => (
+                <div key={v.title} className="rounded-xl border border-border bg-card p-6 text-center shadow-card hover:shadow-elegant transition">
+                  <div className="mx-auto h-14 w-14 rounded-full bg-gradient-primary grid place-items-center text-gold-foreground">
+                    <v.icon size={22} />
                   </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 bg-background">
-        <div className="mx-auto max-w-7xl px-4">
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">പ്രമോട്ടര്‍മാര്‍</p>
-            <h2 className="mt-2 text-3xl md:text-4xl font-bold">ആദ്യഘട്ട നേതൃത്വം</h2>
-            <p className="mt-3 text-muted-foreground">സംഘത്തിന്റെ ആരംഭത്തില്‍ നേതൃനിരയില്‍ ഉണ്ടായിരുന്ന പ്രമോട്ടര്‍മാരുടെ പട്ടിക.</p>
-          </div>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              "അഡ്വ ഡി ശങ്കരന്‍കുട്ടി",
-              "എംപി അജിത് കുമാര്‍",
-              "ശശിചക്രമത്ത്",
-              "കെ ശേഖരന്‍",
-              "ആര്‍ ബാലകൃഷ്ണന്‍",
-              "എം.സുരേഷ്",
-            ].map((name, index) => (
-              <div key={name} className="rounded-xl border border-border bg-card p-5 shadow-card">
-                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">0{index + 1}</div>
-                <div className="mt-2 text-base font-semibold text-foreground">{name}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 bg-muted">
-        <div className="mx-auto max-w-7xl px-4">
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">ഭരണഘടന</p>
-            <h2 className="mt-2 text-3xl md:text-4xl font-bold">ആദ്യകാല ഡയറക്ടര്‍മാര്‍</h2>
-            <p className="mt-3 text-muted-foreground">സംഘത്തിന്റെ ആരംഭകാല ഭരണസമിതിയില്‍ ഉണ്ടായിരുന്ന ഡയറക്ടര്‍മാരുടെ പട്ടിക.</p>
-          </div>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              "എം. പി. അജിത് കുമാര്‍",
-              "അഡ്വ. ഡി. ശങ്കരന്‍കുട്ടി",
-              "എം സുരേഷ്",
-              "കെ ശേഖരന്‍",
-              "സിനി സുരേഷ്",
-              "ബിന്ദു പ്രകാശ്",
-              "ഷൈലജ രാധാകൃഷ്ണന്‍",
-              "ആര്‍ ബാലകൃഷ്ണന്‍",
-              "എ. ഉണ്ണികൃഷ്ണന്‍",
-              "കെ.ബി ശ്രീധരന്‍",
-              "മിനി ടി കെ",
-              "സുമതി കെ കെ",
-              "പ്രവീണ്‍കുമാര്‍",
-              "ശ്രീദേവി നന്ദകുമാര്‍",
-            ].map((name, index) => (
-              <div key={name} className="rounded-xl border border-border bg-card p-5 shadow-card">
-                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">0{index + 1}</div>
-                <div className="mt-2 text-base font-semibold text-foreground">{name}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 bg-background">
-        <div className="mx-auto max-w-7xl px-4">
-          <div className="text-center max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold">{t("about.values.title")}</h2>
-            <p className="mt-2 text-muted-foreground">{t("about.values.desc")}</p>
-          </div>
-          <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map((v) => (
-              <div key={v.title} className="rounded-xl border border-border bg-card p-6 text-center shadow-card hover:shadow-elegant transition">
-                <div className="mx-auto h-14 w-14 rounded-full bg-gradient-primary grid place-items-center text-primary-foreground">
-                  <v.icon size={22} />
+                  <h3 className="mt-4 font-semibold">{v.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{v.desc}</p>
                 </div>
-                <h3 className="mt-4 font-semibold">{v.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{v.desc}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
     </>
   );
 }

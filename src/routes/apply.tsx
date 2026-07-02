@@ -152,7 +152,7 @@ function Stepper({ step }: { step: number }) {
         return (
           <div key={l} className="flex-1 flex items-center">
             <div className="flex flex-col items-center">
-              <div className={`h-10 w-10 rounded-full grid place-items-center text-sm font-semibold ${done ? "bg-success text-white" : active ? "bg-gradient-primary text-primary-foreground shadow-elegant" : "bg-card border border-border text-muted-foreground"}`}>
+              <div className={`h-10 w-10 rounded-full grid place-items-center text-sm font-semibold ${done ? "bg-success text-white" : active ? "bg-gradient-primary text-gold-foreground shadow-elegant" : "bg-card border border-border text-muted-foreground"}`}>
                 {done ? <CheckCircle size={18} /> : n}
               </div>
               <span className={`mt-2 text-xs ${active ? "text-primary font-semibold" : "text-muted-foreground"}`}>{l}</span>
@@ -170,7 +170,7 @@ const inputCls = "w-full rounded-md border border-input bg-background px-3 py-2.
 function SectionTitle({ icon: Icon, children }: { icon: React.ComponentType<{ size?: number }>; children: React.ReactNode }) {
   return (
     <div className="flex items-center gap-2 pb-3 border-b border-border">
-      <span className="h-9 w-9 rounded-md bg-primary/15 text-primary grid place-items-center"><Icon size={18} /></span>
+      <span className="h-9 w-9 rounded-md bg-gold/15 text-gold grid place-items-center"><Icon size={18} /></span>
       <h2 className="font-semibold text-lg">{children}</h2>
     </div>
   );
@@ -180,7 +180,7 @@ function Field({ label, icon: Icon, children }: { label: string; icon?: React.Co
   return (
     <label className="block">
       <span className="text-sm font-medium flex items-center gap-1.5">
-        {Icon && <Icon size={14} className="text-primary" />} {label}
+        {Icon && <Icon size={14} className="text-gold" />} {label}
       </span>
       <div className="mt-1.5">{children}</div>
     </label>

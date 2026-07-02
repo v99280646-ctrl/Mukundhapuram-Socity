@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TeamYearRouteImport } from './routes/team-year'
 import { Route as TeamRouteImport } from './routes/team'
 import { Route as ProductsRouteImport } from './routes/products'
 import { Route as EventsRouteImport } from './routes/events'
@@ -16,7 +17,13 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ApplyRouteImport } from './routes/apply'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EventsEventIdRouteImport } from './routes/events.$eventId'
 
+const TeamYearRoute = TeamYearRouteImport.update({
+  id: '/team-year',
+  path: '/team-year',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TeamRoute = TeamRouteImport.update({
   id: '/team',
   path: '/team',
@@ -52,24 +59,33 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EventsEventIdRoute = EventsEventIdRouteImport.update({
+  id: '/$eventId',
+  path: '/$eventId',
+  getParentRoute: () => EventsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/apply': typeof ApplyRoute
   '/contact': typeof ContactRoute
-  '/events': typeof EventsRoute
+  '/events': typeof EventsRouteWithChildren
   '/products': typeof ProductsRoute
   '/team': typeof TeamRoute
+  '/team-year': typeof TeamYearRoute
+  '/events/$eventId': typeof EventsEventIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/apply': typeof ApplyRoute
   '/contact': typeof ContactRoute
-  '/events': typeof EventsRoute
+  '/events': typeof EventsRouteWithChildren
   '/products': typeof ProductsRoute
   '/team': typeof TeamRoute
+  '/team-year': typeof TeamYearRoute
+  '/events/$eventId': typeof EventsEventIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -77,9 +93,11 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/apply': typeof ApplyRoute
   '/contact': typeof ContactRoute
-  '/events': typeof EventsRoute
+  '/events': typeof EventsRouteWithChildren
   '/products': typeof ProductsRoute
   '/team': typeof TeamRoute
+  '/team-year': typeof TeamYearRoute
+  '/events/$eventId': typeof EventsEventIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,8 +109,19 @@ export interface FileRouteTypes {
     | '/events'
     | '/products'
     | '/team'
+    | '/team-year'
+    | '/events/$eventId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/apply' | '/contact' | '/events' | '/products' | '/team'
+  to:
+    | '/'
+    | '/about'
+    | '/apply'
+    | '/contact'
+    | '/events'
+    | '/products'
+    | '/team'
+    | '/team-year'
+    | '/events/$eventId'
   id:
     | '__root__'
     | '/'
@@ -102,6 +131,8 @@ export interface FileRouteTypes {
     | '/events'
     | '/products'
     | '/team'
+    | '/team-year'
+    | '/events/$eventId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -109,13 +140,21 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ApplyRoute: typeof ApplyRoute
   ContactRoute: typeof ContactRoute
-  EventsRoute: typeof EventsRoute
+  EventsRoute: typeof EventsRouteWithChildren
   ProductsRoute: typeof ProductsRoute
   TeamRoute: typeof TeamRoute
+  TeamYearRoute: typeof TeamYearRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/team-year': {
+      id: '/team-year'
+      path: '/team-year'
+      fullPath: '/team-year'
+      preLoaderRoute: typeof TeamYearRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/team': {
       id: '/team'
       path: '/team'
@@ -165,17 +204,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/events/$eventId': {
+      id: '/events/$eventId'
+      path: '/$eventId'
+      fullPath: '/events/$eventId'
+      preLoaderRoute: typeof EventsEventIdRouteImport
+      parentRoute: typeof EventsRoute
+    }
   }
 }
+
+interface EventsRouteChildren {
+  EventsEventIdRoute: typeof EventsEventIdRoute
+}
+
+const EventsRouteChildren: EventsRouteChildren = {
+  EventsEventIdRoute: EventsEventIdRoute,
+}
+
+const EventsRouteWithChildren =
+  EventsRoute._addFileChildren(EventsRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ApplyRoute: ApplyRoute,
   ContactRoute: ContactRoute,
-  EventsRoute: EventsRoute,
+  EventsRoute: EventsRouteWithChildren,
   ProductsRoute: ProductsRoute,
   TeamRoute: TeamRoute,
+  TeamYearRoute: TeamYearRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

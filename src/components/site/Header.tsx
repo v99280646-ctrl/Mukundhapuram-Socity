@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Phone, Mail, Menu, X, Globe, ChevronDown } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useT, type Lang } from "@/lib/i18n";
-import logoImg from "@/assets/new.png";
+import logoImg from "/2-1.png";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -21,7 +21,7 @@ export function Header() {
   const nav = [
     { to: "/", label: t("nav.home") },
     { to: "/about", label: t("nav.about") },
-    { to: "/team", label: t("nav.team") },
+    { to: "/team-year", label: t("nav.team") },
     { to: "/products", label: t("nav.products") },
     { to: "/events", label: t("nav.events") },
     { to: "/contact", label: t("nav.contact") },
@@ -44,10 +44,10 @@ export function Header() {
     <div ref={mobile ? undefined : langRef} className="relative">
       <button
         onClick={() => setLangOpen(!langOpen)}
-        className="flex items-center gap-1.5 rounded-md border border-border px-3 py-2 text-sm font-medium hover:bg-muted transition"
+        className="flex items-center gap-1 rounded-md border border-border px-2.5 py-1.5 text-[13px] font-medium hover:bg-muted transition sm:px-3 sm:py-2 sm:text-sm"
         aria-label={t("nav.language")}
       >
-        <Globe size={15} /> {current.label} <ChevronDown size={14} />
+        <Globe size={14} /> {current.label} <ChevronDown size={13} />
       </button>
       {langOpen && (
         <div className="absolute right-0 mt-2 w-40 rounded-md border border-border bg-popover shadow-elegant z-50 overflow-hidden">
@@ -70,18 +70,18 @@ export function Header() {
       <div className="bg-primary text-primary-foreground text-xs">
         <div className="mx-auto max-w-7xl px-4 py-2 flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1.5"><Phone size={12} /> +91-9876543210</span>
-            <span className="hidden sm:flex items-center gap-1.5"><Mail size={12} /> info@mukundhapuramsocity.com</span>
+            <span className="flex items-center gap-1.5"><Phone size={12} className="text-gold" /> +91 92070 89753</span>
+            <span className="hidden sm:flex items-center gap-1.5"><Mail size={12} className="text-gold" /> mkmt.gv.cs.2014@gmail.com</span>
           </div>
           <span className="hidden md:block opacity-90">{t("brand.tagline")}</span>
         </div>
       </div>
-      <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-3">
+      <div className="mx-auto max-w-7xl px-4 py-2.5 sm:py-3 flex items-center justify-between gap-2">
+        <Link to="/" className="flex min-w-0 items-center gap-3">
           <img
             src={logoImg}
             alt={t("brand.name")}
-            className="h-12 w-auto max-w-[240px] object-contain"
+            className="h-10 w-auto max-w-[170px] object-contain sm:h-12 sm:max-w-[240px]"
           />
         </Link>
         <nav className="hidden md:flex items-center gap-6">
@@ -90,8 +90,8 @@ export function Header() {
               <div key={n.to} className="relative group">
                 <Link
                   to={n.to}
-                  className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors inline-flex items-center gap-1"
-                  activeProps={{ className: "text-primary" }}
+                  className="text-sm font-semibold text-foreground/80 hover:text-gold transition-colors inline-flex items-center gap-1"
+                  activeProps={{ className: "text-gold" }}
                 >
                   {n.label} <ChevronDown size={14} />
                 </Link>
@@ -114,8 +114,8 @@ export function Header() {
               <Link
                 key={n.to}
                 to={n.to}
-                className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
-                activeProps={{ className: "text-primary" }}
+                className="text-sm font-semibold text-foreground/80 hover:text-gold transition-colors"
+                activeProps={{ className: "text-gold" }}
               >
                 {n.label}
               </Link>
@@ -124,14 +124,14 @@ export function Header() {
           <LangSwitcher />
           <Link
             to="/apply"
-            className="rounded-md bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-elegant hover:opacity-95 transition"
+            className="rounded-md bg-gold px-5 py-2.5 text-sm font-semibold text-gold-foreground shadow-elegant hover:opacity-95 transition"
           >
             {t("nav.apply")}
           </Link>
         </nav>
-        <div className="md:hidden flex items-center gap-2">
+        <div className="md:hidden flex items-center gap-1.5">
           <LangSwitcher mobile />
-          <button className="p-2" onClick={() => setOpen(!open)} aria-label="Menu">
+          <button className="p-1.5 text-gold" onClick={() => setOpen(!open)} aria-label="Menu">
             {open ? <X /> : <Menu />}
           </button>
         </div>
@@ -139,11 +139,11 @@ export function Header() {
       {open && (
         <div className="md:hidden border-t border-border px-4 py-3 flex flex-col gap-3">
           {nav.map((n) => (
-            <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="text-sm font-medium">
+            <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="text-sm font-semibold">
               {n.label}
             </Link>
           ))}
-          <Link to="/apply" onClick={() => setOpen(false)} className="rounded-md bg-gradient-primary px-4 py-2 text-sm font-semibold text-primary-foreground text-center">
+          <Link to="/apply" onClick={() => setOpen(false)} className="rounded-md bg-gold px-4 py-2 text-sm font-semibold text-gold-foreground text-center">
             {t("nav.apply")}
           </Link>
         </div>
