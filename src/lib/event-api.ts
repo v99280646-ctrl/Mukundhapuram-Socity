@@ -47,26 +47,55 @@ export type EventPostDetailsResponse = {
 };
 
 export async function fetchEventPosts(accountTypeId: string, page = 1) {
-  const response = await fetch(
-    `${BASE_URL}/get_event_posts?accountTypeId=${encodeURIComponent(accountTypeId)}&page=${page}`,
-  );
+  try {
+    const response = await fetch(
+      `${BASE_URL}/get_event_posts?accountTypeId=${encodeURIComponent(accountTypeId)}&page=${page}`,
+    );
 
-  if (!response.ok) {
-    throw new Error(`Failed to load event posts: ${response.status}`);
+    if (!response.ok) {
+      return {
+        success: false,
+        message: `Failed to load event posts: ${response.status}`,
+        total: 0,
+        currentPage: page,
+        totalPages: 0,
+        posts: [],
+      } satisfies EventPostsListResponse;
+    }
+
+    return (await response.json()) as EventPostsListResponse;
+  } catch (error) {
+    return {
+      success: false,
+      message: error instanceof Error ? error.message : "Failed to load event posts",
+      total: 0,
+      currentPage: page,
+      totalPages: 0,
+      posts: [],
+    } satisfies EventPostsListResponse;
   }
-
-  return (await response.json()) as EventPostsListResponse;
 }
 
 export async function fetchEventPostDetails(slug: string) {
-  const response = await fetch(
-    `${BASE_URL}/get_event_post_details?slug=${encodeURIComponent(slug)}`,
-  );
+  try {
+    const response = await fetch(
+      `${BASE_URL}/get_event_post_details?slug=${encodeURIComponent(slug)}`,
+    );
 
-  if (!response.ok) {
-    throw new Error(`Failed to load event details: ${response.status}`);
+    if (!response.ok) {
+      return {
+        success: false,
+        message: `Failed to load event details: ${response.status}`,
+        post: null,
+      } satisfies EventPostDetailsResponse;
+    }
+
+    return (await response.json()) as EventPostDetailsResponse;
+  } catch (error) {
+    return {
+      success: false,
+      message: error instanceof Error ? error.message : "Failed to load event details",
+      post: null,
+    } satisfies EventPostDetailsResponse;
   }
-
-  return (await response.json()) as EventPostDetailsResponse;
 }
-

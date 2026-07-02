@@ -1,12 +1,13 @@
 import { n as require_jsx_runtime } from "../_libs/radix-ui__react-context+react.mjs";
 import { I as ArrowRight } from "../_libs/lucide-react.mjs";
 import { _ as Link, p as Outlet, u as useRouterState } from "../_libs/@tanstack/react-router+[...].mjs";
-import { t as Route } from "./events-Dc_B9_Pw.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/events-DcqRYSpm.js
+import { t as Route } from "./events-Cd6n6PJp.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/events-DNzWoK_E.js
 var import_jsx_runtime = require_jsx_runtime();
 function EventsPage() {
 	const events = Route.useLoaderData();
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: useRouterState({ select: (state) => state.location.pathname }) === "/events" ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
+	if (!(useRouterState({ select: (state) => state.location.pathname }) === "/events")) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Outlet, {});
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
 		className: "relative overflow-hidden bg-gradient-primary text-primary-foreground",
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 			className: "mx-auto max-w-7xl px-4 py-12 sm:py-16 md:py-20",
@@ -62,7 +63,7 @@ function EventsPage() {
 				}, event._id))
 			})
 		})
-	})] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Outlet, {}) });
+	})] });
 }
 //#endregion
 export { EventsPage as component };

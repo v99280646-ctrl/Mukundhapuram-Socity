@@ -1,7 +1,7 @@
-import { n as fetchEventPosts } from "./event-api-BLNrnj_3.mjs";
+import { n as fetchEventPosts } from "./event-api-BJA_0s-U.mjs";
 import { h as createFileRoute, m as lazyRouteComponent } from "../_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/events-Dc_B9_Pw.js
-var $$splitComponentImporter = () => import("./events-DcqRYSpm.mjs");
+//#region node_modules/.nitro/vite/services/ssr/assets/events-Cd6n6PJp.js
+var $$splitComponentImporter = () => import("./events-DNzWoK_E.mjs");
 var Route = createFileRoute("/events")({
 	loader: async () => {
 		return (await fetchEventPosts("69280bcd5ec9adaee4326afc", 1)).posts;

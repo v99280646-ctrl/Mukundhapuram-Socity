@@ -5,11 +5,11 @@ import { n as useLanguagePreference, r as useT, t as LanguageProvider } from "./
 import { C as Facebook, a as Twitter, f as Phone, g as Linkedin, h as Mail, k as ChevronDown, m as MapPin, p as Menu, t as X, v as Instagram, x as Globe } from "../_libs/lucide-react.mjs";
 import { A as redirect, _ as Link, c as HeadContent, f as createRouter, g as createRootRouteWithContext, h as createFileRoute, m as lazyRouteComponent, p as Outlet, s as Scripts, v as useRouter } from "../_libs/@tanstack/react-router+[...].mjs";
 import { a as DialogOverlay$1, i as DialogDescription$1, n as DialogClose, o as DialogPortal$1, r as DialogContent$1, s as DialogTitle$1, t as Dialog$1 } from "../_libs/@radix-ui/react-dialog+[...].mjs";
-import { t as Route$8 } from "./events-Dc_B9_Pw.mjs";
-import { n as Route$9, r as cn, t as Button } from "./events._eventId-CRO9LY08.mjs";
+import { t as Route$8 } from "./events-Cd6n6PJp.mjs";
+import { n as Route$9, r as cn, t as Button } from "./events._eventId-B7gTyidx.mjs";
 import { t as QueryClient } from "../_libs/tanstack__query-core.mjs";
 import { t as QueryClientProvider } from "../_libs/tanstack__react-query.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-Btwa_Zcc.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router--XB2fTTy.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var Dialog = Dialog$1;

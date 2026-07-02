@@ -2,9 +2,9 @@ import { r as __toESM } from "../_runtime.mjs";
 import { n as require_react } from "../_libs/@radix-ui/react-compose-refs+[...].mjs";
 import { n as require_jsx_runtime } from "../_libs/radix-ui__react-context+react.mjs";
 import { I as ArrowRight, L as ArrowLeft } from "../_libs/lucide-react.mjs";
-import { n as Route, r as cn, t as Button } from "./events._eventId-CRO9LY08.mjs";
+import { n as Route, r as cn, t as Button } from "./events._eventId-B7gTyidx.mjs";
 import { t as useEmblaCarousel } from "../_libs/embla-carousel-react+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/events._eventId-Cb5AMN9h.js
+//#region node_modules/.nitro/vite/services/ssr/assets/events._eventId-Cg6nqkFV.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var CarouselContext = import_react.createContext(null);
