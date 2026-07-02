@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ChevronDown, CalendarDays } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { useT } from "@/lib/i18n";
 
 type Member = {
@@ -173,6 +174,8 @@ export const Route = createFileRoute("/team-year")({
 
 function TeamYearPage() {
   const { lang } = useT();
+  const [openPeriod, setOpenPeriod] = useState(yearGroups[0]?.period ?? "");
+  const groupRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const ml = lang === "ml";
   const labels = {
     title: ml ? "ഒരുമിച്ച്, നമുക്ക് സാമ്പത്തിക ആത്മവിശ്വാസം വളർത്താം" : "Together We Build Financial Confidence",
@@ -195,6 +198,14 @@ function TeamYearPage() {
       Promoter: ml ? "പ്രമോട്ടർ" : "Promoter",
     } as Record<string, string>,
   };
+
+  useEffect(() => {
+    if (!openPeriod) return;
+
+    const element = groupRefs.current[openPeriod];
+    element?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [openPeriod]);
+
   return (
     <>
       <section className="relative overflow-hidden bg-gradient-primary text-primary-foreground">
@@ -219,18 +230,25 @@ function TeamYearPage() {
       <section className="py-16 bg-background">
         <div className="mx-auto max-w-7xl px-4">
           <div className="mt-10 space-y-4">
-            {yearGroups.map((group, index) => {
-            const leadership = group.members.filter((m) => sectionOrder(m.designation) === 1);
-            const directors = group.members.filter((m) => sectionOrder(m.designation) === 2);
-            const others = group.members.filter((m) => sectionOrder(m.designation) === 3);
+            {yearGroups.map((group) => {
+              const isOpen = openPeriod === group.period;
+              const leadership = group.members.filter((m) => sectionOrder(m.designation) === 1);
+              const directors = group.members.filter((m) => sectionOrder(m.designation) === 2);
+              const others = group.members.filter((m) => sectionOrder(m.designation) === 3);
 
               return (
-                <details
+                <div
                   key={group.period}
+                  ref={(node) => {
+                    groupRefs.current[group.period] = node;
+                  }}
                   className="group rounded-xl border border-border bg-card shadow-card overflow-hidden"
-                  open={index === 0}
                 >
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4">
+                  <button
+                    type="button"
+                    onClick={() => setOpenPeriod(isOpen ? "" : group.period)}
+                    className="flex w-full cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-left"
+                  >
                     <div className="flex items-center gap-3">
                       <div className="h-10 w-10 rounded-lg bg-gold/15 text-gold grid place-items-center">
                         <CalendarDays size={18} />
@@ -244,17 +262,22 @@ function TeamYearPage() {
                         ) : null}
                       </div>
                     </div>
-                    <ChevronDown className="shrink-0 transition-transform duration-200 group-open:rotate-180" size={18} />
-                  </summary>
+                    <ChevronDown
+                      className={`shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                      size={18}
+                    />
+                  </button>
 
-                  <div className="border-t border-border px-5 py-5">
-                    <div className="space-y-6">
-                      <YearSection title={labels.leadership} people={leadership} columnsClass="lg:grid-cols-3" period={group.period} compact designationLabels={labels.designation} />
-                      <YearSection title={labels.directors} people={directors} columnsClass="lg:grid-cols-4" period={group.period} designationLabels={labels.designation} />
-                      <YearSection title={labels.others} people={others} columnsClass="lg:grid-cols-3" period={group.period} designationLabels={labels.designation} />
+                  {isOpen && (
+                    <div className="border-t border-border px-5 py-5">
+                      <div className="space-y-6">
+                        <YearSection title={labels.leadership} people={leadership} columnsClass="lg:grid-cols-3" period={group.period} compact designationLabels={labels.designation} />
+                        <YearSection title={labels.directors} people={directors} columnsClass="lg:grid-cols-4" period={group.period} designationLabels={labels.designation} />
+                        <YearSection title={labels.others} people={others} columnsClass="lg:grid-cols-3" period={group.period} designationLabels={labels.designation} />
+                      </div>
                     </div>
-                  </div>
-                </details>
+                  )}
+                </div>
               );
             })}
           </div>
